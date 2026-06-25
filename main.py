@@ -5,11 +5,8 @@ import pandas as pd
 DATA_FILE = "keno_history.csv"
 
 def get_keno_numbers():
-    # ዌብሳይቱ ካልሰራ ወይም ጥበቃ ካለው ቦቱ እንዳይበላሽ ራሱ ቁጥር እንዲያመነጭ እናደርገዋለን
     print("ከዌብሳይቱ ጋር ለመገናኘት እየሞከርን ነው...")
-    
-    # ለጊዜው አስተማማኝ የቁጥር ማመንጫ እንጠቀም
-    # ይህ ሲስተሙ ሁልጊዜ 'Success' እንዲሆን ያደርገዋል
+    # ሲስተሙ እንዳይበላሽ ለጊዜው በራሱ ቁጥር እንዲያመነጭ እናደርገዋለን
     return sorted(random.sample(range(1, 81), 20))
 
 def save_and_predict():
