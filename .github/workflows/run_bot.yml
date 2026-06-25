@@ -1,0 +1,32 @@
+name: Keno Prediction Bot
+
+on:
+  schedule:
+    - cron: '0 * * * *' # በየ 1 ሰዓቱ ራሱ በጀርባ ይነሳል
+  workflow_dispatch: # በእጅህም ጫን ብለህ ማሰራት እንድትችል
+
+jobs:
+  run-bot:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v3
+
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.10'
+
+    - name: Install Libraries
+      run: pip install pandas
+
+    - name: Run Python Script
+      run: python main.py
+
+    - name: Save Results
+      run: |
+        git config --global user.name "Keno-Bot"
+        git config --global user.email "bot@github.com"
+        git add keno_history.csv
+        git commit -m "Keno ዳታ በራስ-ሰር ተዘምኗል" || exit 0
+        git push
